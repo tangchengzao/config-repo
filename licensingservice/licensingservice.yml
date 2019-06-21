@@ -1,3 +1,4 @@
+example.property: "I am example"
 spring.jpa.database: "mysql"
 spring.datasource.platform:  "mysql"
 spring.jpa.show-sql: "true"
