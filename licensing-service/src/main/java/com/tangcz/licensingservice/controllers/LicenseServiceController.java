@@ -1,5 +1,6 @@
 package com.tangcz.licensingservice.controllers;
 
+import com.tangcz.licensingservice.config.ServiceConfig;
 import com.tangcz.licensingservice.model.License;
 import com.tangcz.licensingservice.service.LicenseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,27 @@ public class LicenseServiceController {
 
     @Autowired
     private LicenseService licenseService;
+    @Autowired
+    private ServiceConfig serviceConfig;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<License> getLicenses(@PathVariable("organizationId") String organizationId) {
         return licenseService.getLicensesByOrg(organizationId);
+    }
+
+    @RequestMapping(value = "/{licenseId}", method = RequestMethod.GET)
+    public License getLicenses(@PathVariable("organizationId") String organizationId,
+                               @PathVariable("licenseId") String licenseId) {
+        return licenseService.getLicense(organizationId, licenseId);
+    }
+
+    @RequestMapping(value = "/{licenseId}/{clientType}", method = RequestMethod.GET)
+    public License getLicensesWithClient(
+            @PathVariable("organizationId") String organizationId,
+            @PathVariable("licenseId") String licenseId,
+            @PathVariable("clientType") String clientType
+    ) {
+        return licenseService.getLicense(organizationId, licenseId, clientType);
     }
 
 }
