@@ -37,7 +37,11 @@ public class LicenseService {
         Organization org = retrieveOrgInfo(organizationId, clientType);
 
         return license
-                .setOrganizationId(org.getId());
+                .setOrganizationId(org.getId())
+                .setContactEmail(org.getContactEmail())
+                .setContactName(org.getContactName())
+                .setContactPhone(org.getContactPhone())
+                .setComment(serviceConfig.getExampleProperty());
     }
 
     public List<License> getLicensesByOrg(String organizationId) {
@@ -47,6 +51,14 @@ public class LicenseService {
     public void saveLicense(License license) {
         license.setLicenseId(UUID.randomUUID().toString());
         licenseRepository.save(license);
+    }
+
+    public void updateLicense(License license) {
+        licenseRepository.save(license);
+    }
+
+    public void deleteLicense(License license) {
+        licenseRepository.delete(license);
     }
 
     private Organization retrieveOrgInfo(String organizationId, String clientType) {
