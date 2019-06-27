@@ -8,7 +8,7 @@ spring:
       server:
         git:
           uri: https://github.com/tangchengzao/config-repo
-          search-paths: licensingservice
+          search-paths: licensingservice, organizationservice
 #        native:
 #          search-locations: classpath:config/licensingservice
 
