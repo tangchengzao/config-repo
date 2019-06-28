@@ -10,7 +10,7 @@ import javax.persistence.Table;
  * @date 2019/06/26 20:16
  */
 @Entity
-@Table(name = "organization")
+@Table(name = "organizations")
 public class Organization {
 
     @Id
